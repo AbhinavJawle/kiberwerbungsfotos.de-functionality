@@ -33,6 +33,7 @@ export async function POST(request: Request) {
   } = await supabase.auth.getUser();
 
   if (!user) {
+    console.error("User not found");
     return NextResponse.json(
       {
         message: "Unauthorized",
