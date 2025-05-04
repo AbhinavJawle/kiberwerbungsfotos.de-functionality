@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       console.error({ creditError });
       return NextResponse.json(
         {
-          message: "Something went wrong!",
+          message: " Credit error Something went wrong!",
         },
         { status: 500 }
       );
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
         console.error({ errorCreatingCredits });
         return NextResponse.json(
           {
-            message: "Something went wrong!",
+            message: "errorCreatingCredits Something went wrong!",
           },
           { status: 500 }
         );
@@ -134,20 +134,22 @@ export async function POST(request: Request) {
     console.error("modelError: ", modelError);
     return NextResponse.json(
       {
-        message: "Something went wrong!",
+        message: "modelError Something went wrong!",
       },
       { status: 500 }
     );
   }
-  
+
   // Get the modelId from the created model
   const modelId = data?.id;
 
   try {
-    const deploymentUrl = process.env.DEPLOYMENT_URL || '';
-    const baseUrl = deploymentUrl.startsWith('http://') || deploymentUrl.startsWith('https://') 
-      ? deploymentUrl 
-      : `https://${deploymentUrl}`;
+    const deploymentUrl = process.env.DEPLOYMENT_URL || "";
+    const baseUrl =
+      deploymentUrl.startsWith("http://") ||
+      deploymentUrl.startsWith("https://")
+        ? deploymentUrl
+        : `https://${deploymentUrl}`;
 
     const trainWebhook = `${baseUrl}/astria/train-webhook`;
     const trainWebhookWithParams = `${trainWebhook}?user_id=${user.id}&model_id=${modelId}&webhook_secret=${appWebhookSecret}`;
@@ -250,7 +252,7 @@ export async function POST(request: Request) {
       console.error("samplesError: ", samplesError);
       return NextResponse.json(
         {
-          message: "Something went wrong!",
+          message: "samplesError Something went wrong!",
         },
         { status: 500 }
       );
@@ -271,7 +273,7 @@ export async function POST(request: Request) {
         console.error({ updateCreditError });
         return NextResponse.json(
           {
-            message: "Something went wrong!",
+            message: "updateCreditError Something went wrong!",
           },
           { status: 500 }
         );
@@ -285,7 +287,7 @@ export async function POST(request: Request) {
     }
     return NextResponse.json(
       {
-        message: "Something went wrong!",
+        message: "delete model Something went wrong!",
       },
       { status: 500 }
     );
